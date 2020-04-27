@@ -29,6 +29,10 @@ namespace Lab11
         {
             return names[rand.Next(0, 10)];
         }
+        public int GetRandomNum()
+        {
+            return rand.Next(1, 1000);
+        }
         public TestCollections(int count)
         {
             listPeople = new List<Person>();
@@ -39,7 +43,7 @@ namespace Lab11
             for (int i = 0; i < count; i++)
             {
 
-                Employee employee = new Employee(GetRandomName());
+                Employee employee = new Employee(GetRandomName(), GetRandomNum());
                 Person person = employee.BasePerson;
                 
                 listPeople.Add(person);

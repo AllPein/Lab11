@@ -119,7 +119,7 @@ namespace Lab11
             Console.Write("Введите имя: ");
             string name = Console.ReadLine();
 
-            return new Person(name);
+            return new Person(name, 14);
         }
         public static Employee AddEmployee()
         {
@@ -250,7 +250,7 @@ namespace Lab11
         }
         static void FirstTask()
         {
-            List<Person> list = new List<Person> {  new Person("Sasha"), new Employee("Max", 16000), new Engineer("Oleg", 12000, 4),  new Administrator("Kirill", 7000, 2) };
+            List<Person> list = new List<Person> {  new Person("Sasha", 18), new Employee("Max", 16000), new Engineer("Oleg", 12000, 4),  new Administrator("Kirill", 7000, 2) };
             
             int key;
             do
@@ -348,7 +348,7 @@ namespace Lab11
                             {
                                 Console.Write("Введите имя для поиска: ");
                                 string name = Console.ReadLine();
-                                int index = list.BinarySearch(new Person(name), new NameComparer());
+                                int index = list.BinarySearch(new Person(name, 14), new NameComparer());
 
                                 Console.WriteLine($"Найденный элемент: {list[index].ToString()} \n");
                             }
@@ -416,7 +416,7 @@ namespace Lab11
         static void SecondTask()
         {
             Dictionary<int, Person> dict = new Dictionary<int, Person>();
-            dict.Add(1, new Person("Sasha"));
+            dict.Add(1, new Person("Sasha", 14));
             dict.Add(2, new Employee("Max", 16000));
             dict.Add(3, new Engineer("Oleg", 12000, 4));
             dict.Add(4, new Administrator("Kirill", 7000, 2));
@@ -550,7 +550,7 @@ namespace Lab11
             // Добавление элемента
             Console.WriteLine("Добавление элемента");
             Console.WriteLine("");
-            Employee Employee = new Employee(collection.GetRandomName());
+            Employee Employee = new Employee(collection.GetRandomName(), collection.GetRandomNum());
             collection.Add(Employee);
             Console.WriteLine("--------------------------------");
 
