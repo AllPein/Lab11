@@ -532,296 +532,286 @@ namespace Lab11
         public static void ThirdTask()
         {
             const int size = 10;
-            TestCollections collections = new TestCollections(size);
+            TestCollections collection = new TestCollections(size);
 
             Console.WriteLine("listPeople: ");
-            PrintList(collections.listPeople);
+            PrintList(collection.listPeople);
             Console.WriteLine("");
             Console.WriteLine("listString: ");
-            PrintList(collections.listString);
+            PrintList(collection.listString);
             Console.WriteLine("");
             Console.WriteLine("dictPeople: ");
-            PrintDict(collections.dictPeople);
+            PrintDict(collection.dictPeople);
             Console.WriteLine("");
             Console.WriteLine("dictString: ");
-            PrintDict(collections.dictString);
+            PrintDict(collection.dictString);
             Console.WriteLine("");
             Console.WriteLine("--------------------------------");
             // Добавление элемента
             Console.WriteLine("Добавление элемента");
             Console.WriteLine("");
-            Employee Employee = new Employee(collections.GetRandomName());
-            collections.Add(Employee);
+            Employee Employee = new Employee(collection.GetRandomName());
+            collection.Add(Employee);
             Console.WriteLine("--------------------------------");
 
             // Печать listPeople
             Console.WriteLine("listPeople:");
-            PrintList(collections.listPeople);
+            PrintList(collection.listPeople);
             Console.WriteLine("");
             // Печать listString
             Console.WriteLine("listString:");
-            PrintList(collections.listString);
+            PrintList(collection.listString);
             Console.WriteLine("");
             // Печать dictPeople
             Console.WriteLine("dictPeople:");
-            PrintDict(collections.dictPeople);
+            PrintDict(collection.dictPeople);
             Console.WriteLine("");
             // Печать dictString
             Console.WriteLine("dictString:");
-            PrintDict(collections.dictString);
+            PrintDict(collection.dictString);
             Console.WriteLine("");
             Console.WriteLine("--------------------------------");
             // Удаление элемента
             Console.WriteLine("Удаление элемента");
             Console.WriteLine("");
-            collections.Remove();
+            collection.Remove();
             Console.WriteLine("--------------------------------");
 
             // Печать listPeople
             Console.WriteLine("listPeople:");
-            PrintList(collections.listPeople);
+            PrintList(collection.listPeople);
             Console.WriteLine("");
             // Печать listString
             Console.WriteLine("listString:");
-            PrintList(collections.listString);
+            PrintList(collection.listString);
             Console.WriteLine("");
             // Печать dictPeople
             Console.WriteLine("dictPeople:");
-            PrintDict(collections.dictPeople);
+            PrintDict(collection.dictPeople);
             Console.WriteLine("");
             // Печать dictString
             Console.WriteLine("dictString:");
-            PrintDict(collections.dictString);
+            PrintDict(collection.dictString);
             Console.WriteLine("");
             Console.WriteLine("-------------------------------");
+
+
             Stopwatch stopWatch = new Stopwatch();
+            //Поиск среди коллекций <Tkey>
+            Console.WriteLine("Поиск среди коллекций <TKey>\n");
+            Console.Write("Время поиска первого объекта в коллекции List<TKey>: ");
+            stopWatch.Start();
+            if (collection.listPeople.Contains(collection.firstObject.BasePerson))
+            {
+                stopWatch.Stop();
+                Console.WriteLine("Найден; " + stopWatch.ElapsedTicks);
+            }
+            else
+            {
+                stopWatch.Stop();
+                Console.WriteLine("НЕ найден; " + stopWatch.ElapsedTicks);
+            }
 
-            Console.WriteLine("Время поиска первого объекта в коллекции");
-            bool yes = false;
-            stopWatch.Start();
-            foreach (var x in collections.listPeople)
+
+            Console.Write("Время поиска первого объекта в коллекции Dictionary<TKey, TValue>: ");
+            stopWatch.Restart();
+            if (collection.dictPeople.ContainsKey(collection.firstObject.BasePerson))
             {
-                if (x.Equals(collections.firstObject))
-                {
-                    yes = true;
-                    break;
-                }
+                stopWatch.Stop();
+                Console.WriteLine("Найден; " + stopWatch.ElapsedTicks);
             }
-            stopWatch.Stop();
-            Console.WriteLine(yes ? "Объект найден" : "Объект не найден");
-            Console.WriteLine("Время поиска в listPeople = " + stopWatch.ElapsedTicks);
-            stopWatch.Reset();
-            Console.WriteLine("");
-            stopWatch.Start();
-           
-            Console.WriteLine(collections.listString.Contains(collections.firstObject.BasePerson.ToString()) ? "Объект найден" : "Объект не найден");
-            stopWatch.Stop();
-            Console.WriteLine("Время поиска в listString = " + stopWatch.ElapsedTicks);
-            stopWatch.Reset();
-            Console.WriteLine("");
-            yes = false;
-            stopWatch.Start();
-            foreach (var keyVal in collections.dictPeople)
+            else
             {
-                if (keyVal.Value.Equals(collections.firstObject))
-                {
-                    yes = true;
-                    break;
-                }
+                stopWatch.Stop();
+                Console.WriteLine("НЕ найден; " + stopWatch.ElapsedTicks);
             }
-            stopWatch.Stop();
-            Console.WriteLine(yes ? "Объект найден" : "Объект не найден");
-            Console.WriteLine("Время поиска в dictPeople = " + stopWatch.ElapsedTicks);
-            stopWatch.Reset();
-            Console.WriteLine("");
-            stopWatch.Start();
-            yes = false;
-            foreach (var keyVal in collections.dictPeople)
+
+            Console.Write("TValue Время поиска первого объекта в коллекции Dictionary<TKey, TValue>: ");
+            stopWatch.Restart();
+            if (collection.dictPeople.ContainsValue(collection.firstObject))
             {
-                if (keyVal.Value.Equals(collections.firstObject))
-                {
-                    yes = true;
-                    break;
-                }
+                stopWatch.Stop();
+                Console.WriteLine("Найден; " + stopWatch.ElapsedTicks);
             }
-            Console.WriteLine(yes ? "Объект найден" : "Объект не найден");
-            stopWatch.Stop();
-            Console.WriteLine("Время поиска в dictString = " + stopWatch.ElapsedTicks);
-            stopWatch.Reset();
-            Console.WriteLine("");
+            else
+            {
+                stopWatch.Stop();
+                Console.WriteLine("НЕ найден; " + stopWatch.ElapsedTicks);
+            }
+
+            Console.Write("Время поиска среднего объекта в коллекции List<TKey>: ");
+            stopWatch.Restart();
+            if (collection.listPeople.Contains(collection.middleObject.BasePerson))
+            {
+                stopWatch.Stop();
+                Console.WriteLine("Найден; " + stopWatch.ElapsedTicks);
+            }
+            else
+            {
+                stopWatch.Stop();
+                Console.WriteLine("НЕ найден; " + stopWatch.ElapsedTicks);
+            }
+
+
+            Console.Write("Время поиска среднего объекта в коллекции Dictionary<TKey, TValue>: ");
+            stopWatch.Restart();
+            if (collection.dictPeople.ContainsKey(collection.middleObject.BasePerson))
+            {
+                stopWatch.Stop();
+                Console.WriteLine("Найден; " + stopWatch.ElapsedTicks);
+            }
+            else
+            {
+                stopWatch.Stop();
+                Console.WriteLine("НЕ найден; " + stopWatch.ElapsedTicks);
+            }
+            collection.dictPeople.ContainsValue(collection.middleObject);
+
+            Console.Write("TValue Время поиска среднего объекта в коллекции Dictionary<TKey, TValue>: ");
+            stopWatch.Restart();
+            if (collection.dictPeople.ContainsValue(collection.middleObject))
+            {
+                stopWatch.Stop();
+                Console.WriteLine("Найден; " + stopWatch.ElapsedTicks);
+            }
+            else
+            {
+                stopWatch.Stop();
+                Console.WriteLine("НЕ найден; " + stopWatch.ElapsedTicks);
+            }
+
+            Console.Write("Время поиска последнего объекта в коллекции List<TKey>: ");
+            stopWatch.Restart();
+            if (collection.listPeople.Contains(collection.lastObject.BasePerson))
+            {
+                stopWatch.Stop();
+                Console.WriteLine("Найден; " + stopWatch.ElapsedTicks);
+            }
+            else
+            {
+                stopWatch.Stop();
+                Console.WriteLine("НЕ найден; " + stopWatch.ElapsedTicks);
+            }
+
+
+            Console.Write("Время поиска последнего объекта в коллекции Dictionary<TKey, TValue>: ");
+            stopWatch.Restart();
+            if (collection.dictPeople.ContainsKey(collection.lastObject.BasePerson))
+            {
+                stopWatch.Stop();
+                Console.WriteLine("Найден; " + stopWatch.ElapsedTicks);
+            }
+            else
+            {
+                stopWatch.Stop();
+                Console.WriteLine("НЕ найден; " + stopWatch.ElapsedTicks);
+            }
+
+            Console.Write("TValue Время поиска последнего объекта в коллекции Dictionary<TKey, TValue>: ");
+            stopWatch.Restart();
+            if (collection.dictPeople.ContainsValue(collection.lastObject))
+            {
+                stopWatch.Stop();
+                Console.WriteLine("Найден; " + stopWatch.ElapsedTicks);
+            }
+            else
+            {
+                stopWatch.Stop();
+                Console.WriteLine("НЕ найден; " + stopWatch.ElapsedTicks);
+            }
+            //
+            //
+            //
+            //
+            //
+            //
+            //Поиск среди коллекций <string>
+            Console.WriteLine("\nПоиск среди коллекций <string>\n");
+            Console.Write("Время поиска первого объекта в коллекции List<string>: ");
+            stopWatch.Start();
+            if (collection.listString.Contains(collection.firstObject.BasePerson.ToString()))
+            {
+
+                stopWatch.Stop();
+                Console.WriteLine("Найден; " + stopWatch.ElapsedTicks);
+            }
+            else
+            {
+                stopWatch.Stop();
+                Console.WriteLine("НЕ найден; " + stopWatch.ElapsedTicks);
+            }
+
+
+            Console.Write("Время поиска первого объекта в коллекции Dictionary<string, TValue>: ");
+            stopWatch.Restart();
+            if (collection.dictString.ContainsKey(collection.firstObject.BasePerson.GetHashCode().ToString()))
+            {
+                stopWatch.Stop();
+                Console.WriteLine("Найден; " + stopWatch.ElapsedTicks);
+            }
+            else
+            {
+                stopWatch.Stop();
+                Console.WriteLine("НЕ найден; " + stopWatch.ElapsedTicks);
+            }
+
+            Console.Write("Время поиска среднего объекта в коллекции List<string>: ");
+            stopWatch.Restart();
+            if (collection.listString.Contains(collection.middleObject.BasePerson.ToString()))
+            {
+                stopWatch.Stop();
+                Console.WriteLine("Найден; " + stopWatch.ElapsedTicks);
+            }
+            else
+            {
+                stopWatch.Stop();
+                Console.WriteLine("НЕ найден; " + stopWatch.ElapsedTicks);
+            }
+
+
+            Console.Write("Время поиска среднего объекта в коллекции Dictionary<string, TValue>: ");
+            stopWatch.Restart();
+            if (collection.dictString.ContainsKey(collection.middleObject.BasePerson.GetHashCode().ToString()))
+            {
+                stopWatch.Stop();
+                Console.WriteLine("Найден; " + stopWatch.ElapsedTicks);
+            }
+            else
+            {
+                stopWatch.Stop();
+                Console.WriteLine("НЕ найден; " + stopWatch.ElapsedTicks);
+            }
+
+            Console.Write("Время поиска последнего объекта в коллекции List<string>: ");
+            stopWatch.Restart();
+            if (collection.listString.Contains(collection.lastObject.BasePerson.ToString()))
+            {
+                stopWatch.Stop();
+                Console.WriteLine("Найден; " + stopWatch.ElapsedTicks);
+            }
+            else
+            {
+                stopWatch.Stop();
+                Console.WriteLine("НЕ найден; " + stopWatch.ElapsedTicks);
+            }
+
+
+            Console.Write("Время поиска последнего объекта в коллекции Dictionary<string, TValue>: ");
+            stopWatch.Restart();
+            if (collection.dictString.ContainsKey(collection.lastObject.BasePerson.GetHashCode().ToString()))
+            {
+                stopWatch.Stop();
+                Console.WriteLine("Найден; " + stopWatch.ElapsedTicks);
+            }
+            else
+            {
+                stopWatch.Stop();
+                Console.WriteLine("НЕ найден; " + stopWatch.ElapsedTicks);
+            }
 
             Console.WriteLine("-------------------------------");
 
-
-
-
-            Console.WriteLine("Время поиска центрального объекта в коллекции");
-            yes = false;
-            stopWatch.Start();
-            foreach (var x in collections.listPeople)
-            {
-                if (x.Equals(collections.middleObject))
-                {
-                    yes = true;
-                    break;
-                }
-            }
-            stopWatch.Stop();
-            Console.WriteLine(yes ? "Объект найден" : "Объект не найден");
-            Console.WriteLine("Время поиска в listPeople = " + stopWatch.ElapsedTicks);
-            stopWatch.Reset();
-            Console.WriteLine("");
-            stopWatch.Start();
-            Console.WriteLine(collections.listString.Contains(collections.middleObject.BasePerson.ToString()) ? "Объект найден" : "Объект не найден");
-            stopWatch.Stop();
-            Console.WriteLine("Время поиска в listString = " + stopWatch.ElapsedTicks);
-            stopWatch.Reset();
-            Console.WriteLine("");
-
-            yes = false;
-            stopWatch.Start();
-            foreach (var keyVal in collections.dictPeople)
-            {
-                if (keyVal.Value.Equals(collections.middleObject))
-                {
-                    yes = true;
-                    break;
-                }
-            }
-            stopWatch.Stop();
-            Console.WriteLine(yes ? "Объект найден" : "Объект не найден");
-            Console.WriteLine("Время поиска в dictPeople = " + stopWatch.ElapsedTicks);
-            stopWatch.Reset();
-            Console.WriteLine("");
-            yes = false;
-            stopWatch.Start();
-            foreach (var keyVal in collections.dictPeople)
-            {
-                if (keyVal.Value.Equals(collections.middleObject))
-                {
-                    yes = true;
-                    break;
-                }
-            }
-            stopWatch.Stop();
-            Console.WriteLine(yes ? "Объект найден" : "Объект не найден");
-            Console.WriteLine("Время поиска в dictString = " + stopWatch.ElapsedTicks);
-            stopWatch.Reset();
-            Console.WriteLine("");
-
-            Console.WriteLine("-------------------------------");
-
-            Console.WriteLine("Время поиска последнего объекта в коллекции");
-            yes = false;
-            stopWatch.Start();
-            foreach (var x in collections.listPeople)
-            {
-                if (x.Equals(collections.lastObject))
-                {
-                    yes = true;
-                    break;
-                }
-            }
-            stopWatch.Stop();
-            Console.WriteLine(yes ? "Объект найден" : "Объект не найден");
-           
-            Console.WriteLine("Время поиска в listPeople = " + stopWatch.ElapsedTicks);
-            Console.WriteLine("");
-            stopWatch.Start();
-            Console.WriteLine(collections.listString.Contains(collections.lastObject.BasePerson.ToString()) ? "Объект найден" : "Объект не найден");
-            stopWatch.Stop();
-            Console.WriteLine("Время поиска в listString = " + stopWatch.ElapsedTicks);
-            stopWatch.Reset();
-            Console.WriteLine("");
-            yes = false;
-            stopWatch.Start();
-            foreach (var keyVal in collections.dictPeople)
-            {
-                if (keyVal.Value.Equals(collections.lastObject))
-                {
-                    yes = true;
-                    break;
-                }
-            }
-            stopWatch.Stop();
-            Console.WriteLine(yes ? "Объект найден" : "Объект не найден");
-
-            Console.WriteLine("Время поиска в dictPeople = " + stopWatch.ElapsedTicks);
-            stopWatch.Reset();
-            Console.WriteLine("");
-            yes = false;
-            stopWatch.Start();
-            foreach (var keyVal in collections.dictPeople)
-            {
-                if (keyVal.Value.Equals(collections.lastObject))
-                {
-                    yes = true;
-                    break;
-                }
-            }
-            stopWatch.Stop();
-            Console.WriteLine(yes ? "Объект найден" : "Объект не найден");
-            Console.WriteLine("Время поиска в dictString = " + stopWatch.ElapsedTicks);
-            stopWatch.Reset();
-            Console.WriteLine("");
-
-            Console.WriteLine("-------------------------------");
-
-            Console.WriteLine("Время поиска объекта, не входящего в коллекцию");
-            Employee unknownObject = new Employee("adsasd", 1);
-            yes = false;
-
-            stopWatch.Start();
-            foreach (var x in collections.listPeople)
-            {
-                if (x.Equals(unknownObject))
-                {
-                    yes = true;
-                    break;
-                }
-            }
-            stopWatch.Stop();
-            Console.WriteLine(yes ? "Объект найден" : "Объект не найден");
-            Console.WriteLine("Время поиска в listPeople = " + stopWatch.ElapsedTicks);
-            stopWatch.Reset();
-            Console.WriteLine("");
-            stopWatch.Start();
-
-            Console.WriteLine(collections.listString.Contains(unknownObject.BasePerson.ToString()) ? "Объект найден" : "Объект не найден");
-            stopWatch.Stop();
-            Console.WriteLine("Время поиска в listString = " + stopWatch.ElapsedTicks);
-            stopWatch.Reset();
-            Console.WriteLine("");
-            yes = false;
-            stopWatch.Start();
-            foreach (var keyVal in collections.dictPeople)
-            {
-                if (keyVal.Value.Equals(unknownObject))
-                {
-                    yes = true;
-                    break;
-                }
-            }
-            stopWatch.Stop();
-            Console.WriteLine(yes ? "Объект найден" : "Объект не найден");
-            Console.WriteLine("Время поиска в dictPeople = " + stopWatch.ElapsedTicks);
-            stopWatch.Reset();
-            Console.WriteLine("");
-            yes = false;
-            stopWatch.Start();
-            foreach (var keyVal in collections.dictPeople)
-            {
-                if (keyVal.Value.Equals(unknownObject))
-                {
-                    yes = true;
-                    break;
-                }
-            }
-            stopWatch.Stop();
-            Console.WriteLine(yes ? "Объект найден" : "Объект не найден");
-            Console.WriteLine("Время поиска в dictString = " + stopWatch.ElapsedTicks);
-            stopWatch.Reset();
-            Console.WriteLine("");
+          
 
             Console.WriteLine("-------------------------------");
         }
